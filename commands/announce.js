@@ -1,11 +1,24 @@
 module.exports = {
-    name: "announce",
-    description: "Duyuru yapar.",
-    execute(message, args) {
-      if (!message.member.permissions.has("ManageMessages")) return message.reply("⛔ Bu komutu kullanamazsın.");
+  name: "announce",
+  description: "Sunucuda duyuru yapar.",
+  execute(message, args) {
+      // Kullanıcının gerekli izne sahip olup olmadığını kontrol et
+      if (!message.member.permissions.has("ManageMessages")) {
+          return message.reply("⛔ Bu komutu kullanabilmek için **Mesajları Yönet** iznine sahip olmalısınız.");
+      }
+      
+      // Duyuru metnini al
       const announcement = args.join(" ");
-      if (!announcement) return message.reply("Yapılacak duyuruyu yaz.");
-      message.channel.send(`📢 DUYURU: ${announcement}`);
-    }
-  };
-  
+      
+      // Duyuru metni girilmemişse kullanıcıyı bilgilendir
+      if (!announcement) {
+          return message.reply("❗ Lütfen yapılacak duyuruyu yazın.");
+      }
+      
+      // Duyuru mesajını gönder
+      message.channel.send(`📢 **DUYURU**: ${announcement}`);
+      
+      // Duyuru başarılıysa kullanıcıyı bilgilendir
+      message.reply("✅ Duyuru başarıyla yapıldı.");
+  }
+};
