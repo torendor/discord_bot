@@ -1,0 +1,18 @@
+# Node.js bağımlılıkları
+node_modules/
+
+# Çevresel değişken dosyası
+.env
+
+# VS Code ayar dosyaları
+.vscode/
+
+# log dosyaları
+*.log
+
+# Genel dosyalar
+*.bak
+*.tmp
+
+# Disord bot tokenları
+config.json
